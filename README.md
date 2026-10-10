@@ -33,7 +33,7 @@ Run of 10 October 2026 (UTC), from one location. Full numbers: [`data/summary.js
 | Challenge also offers a testnet | 733 |
 | Accept entries with a decimal `amount` ("0.01" instead of base units) | 194 (other accepts of the same challenge were valid) |
 | Valid offers by network | Base 14 266, Solana 484, Base Sepolia 146, others 64 |
-| Price (USDC offers) | min 0.001, median 0.01, p75 0.02, max 5 000; 9 494 at 0.01 or less |
+| Price (USDC offers) | min 0.001, median 0.01, p75 0.02, max 5 000; 9 820 at 0.01 or less (14 899 offers priced in USDC) |
 | Median time to a 402 | 2.3 s |
 | Hosts with no valid 402 on any probed endpoint | 86 of 2 185 |
 | Paid purchases | 0: the buyer wallet had no USDC on Base, the balance guard stopped the run (logged, see below) |
