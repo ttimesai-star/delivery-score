@@ -62,6 +62,18 @@ A score is only worth something if neither side can buy it.
 - **Facts only.** The index publishes what was sent and what came back, with a time, a transaction id for payments, and the AgentLog record behind it. No labels: never "scam", "fraud" or similar.
 - **Corrections.** A seller who disputes a fact gets the signed record and its evidence; if a probe was wrong (for example, our input was invalid), the next probe's result is published next to it, not instead of it.
 
+## Legal checks
+
+Before any purchase, the terms of the facilitator that settles the buyer's payment are checked for: Belarus, sanction, embargo, "arms embargo", HM Treasury, OFAC, restricted territory. If a facilitator excludes the buyer's jurisdiction, purchases go only through facilitators that do not, or are not made. Quotes are verbatim; status as of 10 October 2026.
+
+| Facilitator / source | Status | Verbatim |
+|---|---|---|
+| Coinbase CDP facilitator, x402 FAQ (docs.cdp.coinbase.com/x402/support/faq) | read | "Every payment is screened against OFAC sanctions lists and Know Your Transaction (KYT) risk signals before it settles. A declined payment fails with kyt_risk_detected, so the buyer never loses funds and the seller never delivers the resource. Screening runs at both verification and settlement, and checks the payer and the recipient." |
+| Coinbase Developer Platform Terms of Service (coinbase.com/legal/developer-platform/terms-of-service) | **not read**: HTTP 403 (Cloudflare challenge) to both a plain request and a headless browser | none yet |
+| Other facilitators named in challenges (by `extra.feePayer` / facilitator URL) | not checked yet | none yet |
+
+Until the CDP terms and the facilitator of each target are read and quoted here, the buyer is not run. In this run, nothing was bought.
+
 ## Method
 
 ### Source
@@ -80,9 +92,9 @@ The free Coinbase CDP Bazaar discovery API (`/platform/v2/x402/discovery/resourc
 
 ### Mystery shopper (`src/buyer.mjs`)
 
-- Targets: endpoints whose live challenge offers `exact` USDC on Base at or below 0.01 USDC, cheapest first, one per host.
+- Targets: endpoints whose live challenge offers `exact` USDC on the chosen mainnet (`--chain solana`, default, or `--chain base`) at or below 0.01 USDC, cheapest first, one per host; paths that suggest side effects (send, transfer, swap, order, email, buy, auth, pay and similar) are skipped. On Solana the facilitator must be the fee payer.
 - Limits written in code, not flags: at most 0.05 USDC per purchase and 2 USDC in total across all runs (summed from the spend log). A payment policy registered in the x402 client drops every other offer the seller makes.
-- Uses the official `@x402/core` and `@x402/evm` clients. For each purchase, signed AgentLog entries: the challenge, the payment (chosen requirement, amount), the paid response (status, latency, size, body hash, preview, `PAYMENT-RESPONSE`), and the on-chain receipt (the USDC `Transfer` from our wallet to `payTo` is looked up in the transaction receipt, not taken from the seller's word).
+- Uses the official `@x402/core` and `@x402/evm` clients. For each purchase, signed AgentLog entries: the challenge, the payment (chosen requirement, amount), the paid response (status, latency, size, body hash, preview, `PAYMENT-RESPONSE`), and the on-chain receipt (Base: the USDC `Transfer` from our wallet to `payTo` in the receipt; Solana: the USDC token-balance deltas of our wallet and `payTo` in the confirmed transaction; never the seller's word).
 - Spend log: one CSV row per attempt with the tx id.
 
 ### Score (`src/score.mjs`)

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-10T07:45:51.245Z",
+  "generated_at": "2026-10-10T09:25:00.508Z",
   "formula": "score = 100 * (0.20*live + 0.30*challenge + 0.10*catalog + 0.10*speed + 0.30*delivery)",
   "catalogue": {
     "source": "Coinbase CDP Bazaar discovery",
@@ -155,13 +155,13 @@
     ]
   ],
   "price_usdc_quantiles": {
-    "n": 14415,
+    "n": 14899,
     "min": 0.001,
     "p25": 0.004,
     "median": 0.01,
     "p75": 0.02,
     "max": 5000,
-    "le_0_01": 9494
+    "le_0_01": 9820
   },
   "hosts_with_any_valid_402": 2099,
   "purchases": 0,
