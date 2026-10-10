@@ -1,0 +1,7 @@
+node_modules/
+data/catalog.json
+data/dev/
+data/agentlog.db
+data/agentlog.db-*
+data/scores.json
+data/probe.log

@@ -1,0 +1,128 @@
+{
+ "format": "agentlog-export/v1",
+ "exported_at": "2026-10-10T07:49:08.106Z",
+ "source": {
+  "network": "local SQLite file",
+  "chain_id": 0,
+  "rpc": "file:data/agentlog.db",
+  "at_block": "0"
+ },
+ "agent_id": "delivery-score-buyer",
+ "run_id": "buy-202610100747-guard",
+ "signer": "0x9884b617aa10fa05159ffc3a148af69d3788c4bc",
+ "entries": [
+  {
+   "entry": {
+    "v": 1,
+    "agent_id": "delivery-score-buyer",
+    "run_id": "buy-202610100747-guard",
+    "step": 0,
+    "action": "run.start",
+    "tool": "",
+    "input_hash": "0xc881d7baf40cf6f0d17fd5dbac414cd12a405edc19d90ac1cfc4766c61533918",
+    "output_hash": "0x74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "prev_entry_hash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "timestamp": 1791618436064,
+    "signer": "0x9884b617aa10fa05159ffc3a148af69d3788c4bc",
+    "note": "run started",
+    "entry_hash": "0x84a4d930642689073ae4cbb32ba1f2d1458734b09219858e105eb94e22b86fae",
+    "sig": "0x60bdc7cc2d939b9860dcf9f17866e5d76b01a66a18f40178c7ffa20296ff2e9949e60293a3dfce05bf2dd82759f959f9eec77ee4aee2bcd5ae0b2c1cd807aef21c"
+   }
+  },
+  {
+   "entry": {
+    "v": 1,
+    "agent_id": "delivery-score-buyer",
+    "run_id": "buy-202610100747-guard",
+    "step": 1,
+    "action": "tool.call",
+    "tool": "wallet.balance",
+    "input_hash": "0xc175830d834688a9c2e41272ac230b6b4654757581a8a4dd238dca150d0c1c98",
+    "output_hash": "0xc24312546461c4016e8ac6fcb347b450fa5eec25870cbb94ddb57c41a63057d8",
+    "prev_entry_hash": "0x84a4d930642689073ae4cbb32ba1f2d1458734b09219858e105eb94e22b86fae",
+    "timestamp": 1791618436072,
+    "signer": "0x9884b617aa10fa05159ffc3a148af69d3788c4bc",
+    "note": "balance guard",
+    "entry_hash": "0x8c3cd297736b8060c0711cb28cf55ba032d8e4e4f02e1a83b3f9c3fafd0d03f6",
+    "sig": "0x806b4390ed17a0beb59d043e5f229b3b5924e63b0339f1fdb418fc6da0dd0c52317c5850a5f08a95c1943d48d99d1c4bf81f3b142eb9813da4b23b94bec5af4f1c"
+   }
+  },
+  {
+   "entry": {
+    "v": 1,
+    "agent_id": "delivery-score-buyer",
+    "run_id": "buy-202610100747-guard",
+    "step": 2,
+    "action": "run.end",
+    "tool": "",
+    "input_hash": "0x501d69c2cad42580b4ce842aa5eb4a31690897a427cde8c1729e94831b0520f8",
+    "output_hash": "0x74234e98afe7498fb5daf1f36ac2d78acc339464f950703b8c019892f982b90b",
+    "prev_entry_hash": "0x8c3cd297736b8060c0711cb28cf55ba032d8e4e4f02e1a83b3f9c3fafd0d03f6",
+    "timestamp": 1791618436082,
+    "signer": "0x9884b617aa10fa05159ffc3a148af69d3788c4bc",
+    "note": "run sealed",
+    "entry_hash": "0xb6fb271c7ecd67d86fde9a0d8eec9dacbc1fcf8fb7e56149262acce76a794b79",
+    "sig": "0xcd6486de1dfca6945429ac191f566298207b4a14fa4e3027c75219597a252cba723b0d529da79b10780a163ff3f510a02930fa0186689b1aca9e618ead9e05ac1c"
+   }
+  }
+ ],
+ "foreign": [],
+ "report": {
+  "format": "agentlog/v1",
+  "agent_id": "delivery-score-buyer",
+  "run_id": "buy-202610100747-guard",
+  "signer": "0x9884b617aa10fa05159ffc3a148af69d3788c4bc",
+  "verdict": "intact",
+  "sealed": true,
+  "steps": 3,
+  "head": "0xb6fb271c7ecd67d86fde9a0d8eec9dacbc1fcf8fb7e56149262acce76a794b79",
+  "problems": [],
+  "checks": [
+   {
+    "step": 0,
+    "entry_hash": "0x84a4d930642689073ae4cbb32ba1f2d1458734b09219858e105eb94e22b86fae",
+    "ok": true,
+    "problems": []
+   },
+   {
+    "step": 1,
+    "entry_hash": "0x8c3cd297736b8060c0711cb28cf55ba032d8e4e4f02e1a83b3f9c3fafd0d03f6",
+    "ok": true,
+    "problems": []
+   },
+   {
+    "step": 2,
+    "entry_hash": "0xb6fb271c7ecd67d86fde9a0d8eec9dacbc1fcf8fb7e56149262acce76a794b79",
+    "ok": true,
+    "problems": []
+   }
+  ]
+ },
+ "evidence": {
+  "0": {
+   "input": {
+    "auto": true,
+    "task": "balance guard"
+   },
+   "output": null
+  },
+  "1": {
+   "input": {
+    "asset": "0x833589fcd6edb6e08f4c7c32d4f71b54bda02913",
+    "network": "eip155:8453",
+    "wallet": "0xC628715a1ed46eb555B088e3d43dc61AE0134F33"
+   },
+   "output": {
+    "decision": "stop: no USDC on Base, purchases not attempted",
+    "usdc": 0
+   }
+  },
+  "2": {
+   "input": {
+    "head": "0x8c3cd297736b8060c0711cb28cf55ba032d8e4e4f02e1a83b3f9c3fafd0d03f6",
+    "steps": 2
+   },
+   "output": null
+  }
+ }
+}
