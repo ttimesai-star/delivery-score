@@ -7,7 +7,7 @@ x402 lets an agent pay for an HTTP resource with stablecoins: the server answers
 Delivery Score is a neutral third party that answers those questions with evidence:
 
 1. **Probe** every endpoint of the public x402 catalogue without paying: does it answer, does it answer 402, is the challenge well-formed (scheme, network, asset, payTo, amount), what does it cost, does it match its catalogue entry.
-2. **Mystery shopper**: buy from the cheapest endpoints with real USDC on Base and record whether a result came back, how fast, and whether it has the shape the listing advertises.
+2. **Mystery shopper**: buy from the cheapest endpoints with real USDC on Solana or Base (`--chain solana|base`) and record whether a result came back, how fast, and whether it has the shape the listing advertises.
 3. **Score** each endpoint with a short public formula. Every fact behind a score points to a signed, hash-chained [AgentLog](https://github.com/ttimesai-star/agentlog) entry, so anyone can check that the record was not edited afterwards.
 4. **`check_before_pay(url)`** (not released yet: open pull request on the `feature/check-before-pay` branch of [agentlog-mcp](https://github.com/ttimesai-star/agentlog-mcp/pull/1), not in the published package): an MCP tool that runs a live check, compares the offer with the caller's limits and with this index, and returns facts plus a proceed flag.
 
@@ -124,7 +124,7 @@ npm install
 node src/collect.mjs           # data/catalog.json
 node src/probe.mjs             # data/probe.json + signed entries in data/agentlog.db
 node src/buyer.mjs --dry-run   # show targets and the wallet balance, sign nothing
-node src/buyer.mjs --n 15      # buy (needs USDC on Base; hard limits above)
+node src/buyer.mjs --n 15      # buy (needs USDC on the chosen chain; --chain solana|base; hard limits above)
 node src/score.mjs             # data/scores.json, data/index.json, data/summary.json
 node src/verify.mjs
 npm test
