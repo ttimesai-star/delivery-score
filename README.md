@@ -9,7 +9,7 @@ Delivery Score is a neutral third party that answers those questions with eviden
 1. **Probe** every endpoint of the public x402 catalogue without paying: does it answer, does it answer 402, is the challenge well-formed (scheme, network, asset, payTo, amount), what does it cost, does it match its catalogue entry.
 2. **Mystery shopper**: buy from the cheapest endpoints with real USDC on Base and record whether a result came back, how fast, and whether it has the shape the listing advertises.
 3. **Score** each endpoint with a short public formula. Every fact behind a score points to a signed, hash-chained [AgentLog](https://github.com/ttimesai-star/agentlog) entry, so anyone can check that the record was not edited afterwards.
-4. **`check_before_pay(url)`**: an MCP tool in [agentlog-mcp](https://github.com/ttimesai-star/agentlog-mcp) that runs a live check, compares the offer with the caller's limits and with this index, and returns facts plus a proceed flag.
+4. **`check_before_pay(url)`** (not released yet: open pull request on the `feature/check-before-pay` branch of [agentlog-mcp](https://github.com/ttimesai-star/agentlog-mcp/pull/1), not in the published package): an MCP tool that runs a live check, compares the offer with the caller's limits and with this index, and returns facts plus a proceed flag.
 
 The project publishes facts ("paid 0.01 USDC at 12:03 UTC, tx 0x…, no response within 30 s"), never labels.
 
@@ -132,7 +132,7 @@ npm test
 
 Keys: `DS_AGENT_KEY` signs log entries and holds no funds. The buyer wallet is read from a local secrets file outside the repository.
 
-In an MCP client, with agentlog-mcp: set `DELIVERY_SCORE_INDEX` to a local `index.json` or its raw URL and call `check_before_pay { url, method?, body?, max_price_usdc?, expected_pay_to?, network? }`.
+Once that branch is merged (until then, build agentlog-mcp from `feature/check-before-pay`): in an MCP client, set `DELIVERY_SCORE_INDEX` to a local `index.json` or its raw URL and call `check_before_pay { url, method?, body?, max_price_usdc?, expected_pay_to?, network? }`.
 
 ## Limits
 
